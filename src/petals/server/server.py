@@ -251,12 +251,18 @@ class Server:
                 sys.exit(0)
         else:
             throughput_info = {"throughput": throughput}
+        
+        gpu_info = {}
+        if device.type == "cuda":
+            gpu_info = torch.cuda.get_device_properties(device)
+        print(gpu_info)
         self.server_info = ServerInfo(
             state=ServerState.JOINING,
             public_name=public_name,
             version=petals.__version__,
             adapters=tuple(adapters),
             torch_dtype=str(torch_dtype).replace("torch.", ""),
+            gpu_info = gpu_info,
             quant_type=quant_type.name.lower(),
             using_relay=reachable_via_relay,
             **throughput_info,

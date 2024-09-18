@@ -56,6 +56,7 @@ class ServerInfo:
 
     adapters: Sequence[str] = ()
     torch_dtype: Optional[str] = None
+    gpu_info : Optional[Dict] = None
     quant_type: Optional[str] = None
     using_relay: Optional[bool] = None
     cache_tokens_left: Optional[pydantic.conint(ge=0, strict=True)] = None
