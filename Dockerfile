@@ -1,6 +1,6 @@
 FROM nvcr.io/nvidia/cuda:11.0.3-cudnn8-devel-ubuntu20.04
-LABEL maintainer="bigscience-workshop"
-LABEL repository="petals"
+LABEL maintainer="Clark"
+LABEL repository="Clark-petals-test"
 
 WORKDIR /home
 # Set en_US.UTF-8 locale by default
@@ -26,6 +26,11 @@ ENV PETALS_CACHE=/cache
 
 COPY . petals/
 RUN pip install --no-cache-dir -e petals
+
+ARG HUGGING_FACE_TOKEN
+ENV HUGGING_FACE_TOKEN=${HUGGING_FACE_TOKEN}
+RUN pip install huggingface-cli
+RUN huggingface-cli login
 
 WORKDIR /home/petals/
 CMD bash
