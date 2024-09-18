@@ -254,7 +254,7 @@ class Server:
         
         gpu_info = {}
         if device.type == "cuda":
-            gpu_info = torch.cuda.get_device_properties(device)
+            gpu_info = vars(torch.cuda.get_device_properties(device))
         print(gpu_info)
         self.server_info = ServerInfo(
             state=ServerState.JOINING,
