@@ -29,7 +29,7 @@ RUN pip install --no-cache-dir -e petals
 
 ARG HUGGING_FACE_TOKEN
 ENV HUGGING_FACE_TOKEN=${HUGGING_FACE_TOKEN}
-RUN pip install huggingface-cli
+RUN pip install huggingface-cli==0.10.0
 RUN huggingface-cli login
 
 WORKDIR /home/petals/
